@@ -1,0 +1,129 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Account Balance API",
+    "description" : "API for managing account balances. This API provides endpoints to retrieve account balances and top up balances.",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://mock.apiwiz.io/v3/accounts",
+    "description" : "Sandbox server",
+    "x-name" : "Server1",
+    "x-schema" : "https://",
+    "x-hostName" : "mock.apiwiz.io",
+    "x-basePath" : "/v3/accounts"
+  } ],
+  "paths" : {
+    "/{customerId}/balance" : {
+      "get" : {
+        "x-monitoring-stats" : {
+          "monitoringId" : "111",
+          "envId" : "222"
+        },
+        "summary" : "Get Account Balance",
+        "description" : "Retrieve the balance for a specific customer account.",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "ID of the customer account",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "name" : "Authorization",
+          "required" : true,
+          "style" : "simple",
+          "in" : "header",
+          "schema" : {
+            "description" : "",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "balance" : 500
+                }
+              }
+            }
+          }
+        },
+        "operationId" : "getAccountBalance"
+      },
+      "post" : {
+        "x-monitoring-stats" : {
+          "monitoringId" : "111",
+          "envId" : "222"
+        },
+        "summary" : "Topup Account Balance",
+        "description" : "Top up the balance for a specific customer account.",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "ID of the customer account",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "Authorization",
+          "required" : true,
+          "style" : "simple",
+          "in" : "header",
+          "schema" : {
+            "description" : "",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "amount" : {
+                    "type" : "integer",
+                    "example" : 100
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Topup Successful",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "message" : "Topup Successful"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags" : [ ],
+  "security" : [ ],
+  "components" : { },
+  "x-mock" : true,
+  "x-metadata" : {
+    "metadata" : {
+      "swaggerName" : "23e2daa2c1a442ec85824a1af98d34c0",
+      "revision" : 1,
+      "documentation" : [ ],
+      "category" : [ {
+        "name" : "Unsorted",
+        "paths" : [ "/{customerId}/balance" ]
+      } ]
+    }
+  }
+}
